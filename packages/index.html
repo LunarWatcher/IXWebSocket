@@ -12,12 +12,9 @@
         <link href="../css/bootstrap.min.css" rel="stylesheet">
         <link href="../css/font-awesome.min.css" rel="stylesheet">
         <link href="../css/base.css" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-
-        <script src="../js/jquery-1.10.2.min.js" defer></script>
-        <script src="../js/bootstrap.min.js" defer></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-        <script>hljs.initHighlightingOnLoad();</script> 
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+        <script>hljs.highlightAll();</script> 
     </head>
 
     <body>
@@ -43,13 +40,13 @@
                                 <a href="../build/" class="nav-link">Build</a>
                             </li>
                             <li class="navitem">
-                                <a href="../cobra/" class="nav-link">Cobra</a>
-                            </li>
-                            <li class="navitem">
                                 <a href="../design/" class="nav-link">Design</a>
                             </li>
                             <li class="navitem active">
                                 <a href="./" class="nav-link">Packages</a>
+                            </li>
+                            <li class="navitem">
+                                <a href="../performance/" class="nav-link">Performance</a>
                             </li>
                             <li class="navitem">
                                 <a href="../usage/" class="nav-link">Examples</a>
@@ -71,7 +68,7 @@
                                 </a>
                             </li>
                             <li class="nav-item">
-                                <a rel="next" href="../usage/" class="nav-link">
+                                <a rel="next" href="../performance/" class="nav-link">
                                     Next <i class="fa fa-arrow-right"></i>
                                 </a>
                             </li>
@@ -112,7 +109,6 @@
 /tmp$ openssl sha512 v9.1.9.tar.gz
 SHA512(v9.1.9.tar.gz)= f1fd731b5f6a9ce6d6d10bee22a5d9d9baaa8ea0564d6c4cd7eb91dcb88a45c49b2c7fdb75f8640a3589c1b30cee33ef5df8dcbb55920d013394d1e33ddd3c8e
 </code></pre>
-
 <p>Now go punch those values in the vcpkg ixwebsocket port config files. Here is what the diff look like.</p>
 <pre><code>vcpkg$ git diff
 diff --git a/ports/ixwebsocket/CONTROL b/ports/ixwebsocket/CONTROL
@@ -140,14 +136,12 @@ index de082aece..68e523a05 100644
 +    SHA512 f1fd731b5f6a9ce6d6d10bee22a5d9d9baaa8ea0564d6c4cd7eb91dcb88a45c49b2c7fdb75f8640a3589c1b30cee33ef5df8dcbb55920d013394d1e33ddd3c8e
  )
 </code></pre>
-
 <p>You will need a fork of the vcpkg repo to make a pull request.</p>
 <pre><code>git fetch upstream
 git co master
 git reset --hard upstream/master
 git push origin master --force
 </code></pre>
-
 <p>Make the pull request (I use a new branch to do that).</p>
 <pre><code>vcpkg$ git co -b feature/ixwebsocket_9.1.9
 M   ports/ixwebsocket/CONTROL
@@ -183,7 +177,6 @@ To https://github.com/bsergean/vcpkg.git
 Branch 'feature/ixwebsocket_9.1.9' set up to track remote branch 'feature/ixwebsocket_9.1.9' from 'origin' by rebasing.
 vcpkg$
 </code></pre>
-
 <p>Just visit this url, https://github.com/bsergean/vcpkg/pull/new/feature/ixwebsocket_9.1.9, printed on the console, to make the pull request.</p></div>
             </div>
         </div>
@@ -192,12 +185,14 @@ vcpkg$
             <hr>
             <p>Documentation built with <a href="https://www.mkdocs.org/">MkDocs</a>.</p>
         </footer>
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/bootstrap.min.js"></script>
         <script>
             var base_url = "..",
                 shortcuts = {"help": 191, "next": 78, "previous": 80, "search": 83};
         </script>
-        <script src="../js/base.js" defer></script>
-        <script src="../search/main.js" defer></script>
+        <script src="../js/base.js"></script>
+        <script src="../search/main.js"></script>
 
         <div class="modal" id="mkdocs_search_modal" tabindex="-1" role="dialog" aria-labelledby="searchModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg">
@@ -207,16 +202,13 @@ vcpkg$
                 <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
             </div>
             <div class="modal-body">
-                <p>
-                    From here you can search these documents. Enter
-                    your search terms below.
-                </p>
+                <p>From here you can search these documents. Enter your search terms below.</p>
                 <form>
                     <div class="form-group">
                         <input type="search" class="form-control" placeholder="Search..." id="mkdocs-search-query" title="Type search term here">
                     </div>
                 </form>
-                <div id="mkdocs-search-results"></div>
+                <div id="mkdocs-search-results" data-no-results-text="No results found"></div>
             </div>
             <div class="modal-footer">
             </div>
